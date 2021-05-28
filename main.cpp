@@ -46,7 +46,7 @@ void MostrarMenuPrincipal()
     cout << "3 - Salir\n";
     cout << "Opcion: ";
 }
-
+/* esto es una prueba de commit*/
 int AbrirBD(sqlite3 *db)
 {
 	int result = sqlite3_open("Bd.sqlite", &db);
