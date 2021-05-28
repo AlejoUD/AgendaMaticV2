@@ -8,6 +8,28 @@
 
 using namespace std;
 
+
+int cargarBaseDatos(){
+
+	/////////
+		sqlite3 *db;
+
+		int result = sqlite3_open("Bd.sqlite", &db); // @suppress("Invalid arguments")
+		if (result != SQLITE_OK) {
+			//printf("Error abriendo la base de datos\n");
+			return result;
+		}
+
+		printf("Database opened\n") ;
+		borrarTareas(db); // @suppress("Invalid arguments")
+		leerFichero(db); // @suppress("Invalid arguments")
+		ordenarTareasImp(db); // @suppress("Invalid arguments")
+		ordenarTareasDur(db); // @suppress("Invalid arguments")
+		/////////
+		return 0;
+
+
+}
 int GetInput()
 {
    int choice;
@@ -47,7 +69,7 @@ int main(int argc, char *argv[])
        choice = GetInput();
        switch(choice) {
                case 1:
-                       cout << "Has elegido la opción: Leer fichero\n";
+                       cout << "Has elegido la opciï¿½n: Leer fichero\n";
                        sqlite3 *db;
 
                        if (AbrirBD(db) != 0)
