@@ -8,28 +8,6 @@
 
 using namespace std;
 
-
-int cargarBaseDatos(){
-
-	/////////
-		sqlite3 *db;
-
-		int result = sqlite3_open("Bd.sqlite", &db); // @suppress("Invalid arguments")
-		if (result != SQLITE_OK) {
-			//printf("Error abriendo la base de datos\n");
-			return result;
-		}
-
-		printf("Database opened\n") ;
-		borrarTareas(db); // @suppress("Invalid arguments")
-		leerFichero(db); // @suppress("Invalid arguments")
-		ordenarTareasImp(db); // @suppress("Invalid arguments")
-		ordenarTareasDur(db); // @suppress("Invalid arguments")
-		/////////
-		return 0;
-
-
-}
 int GetInput()
 {
    int choice;
@@ -46,20 +24,17 @@ void MostrarMenuPrincipal()
     cout << "3 - Salir\n";
     cout << "Opcion: ";
 }
-/* esto es una prueba de commit*/
-int AbrirBD(sqlite3 *db)
-{
-	int result = sqlite3_open("Bd.sqlite", &db);
-	if (result != SQLITE_OK)
-	{
-	//printf("Error abriendo la base de datos\n");
-	return result;
-	}
-	return 0;
-}
+
 
 int main(int argc, char *argv[])
 {
+	sqlite3 *db;
+	int result = sqlite3_open("Bd.sqlite", &db); // @suppress("Invalid arguments")
+	if (result != SQLITE_OK) {
+		printf("Error abriendo la base de datos\n");
+		return result;
+	}
+
     int choice = 0;
 
     do
@@ -69,16 +44,8 @@ int main(int argc, char *argv[])
        choice = GetInput();
        switch(choice) {
                case 1:
-                       cout << "Has elegido la opci�n: Leer fichero\n";
-                       sqlite3 *db;
-
-                       if (AbrirBD(db) != 0)
-                       {
-                    	   printf("Error al abrir la Base de Datos\n");
-                       }
-                       printf("Base de datos abierta\n");
-
-                       leerFichero(db);
+                       cout << "Has elegido la opción de Leer Fichero: \n";
+                       leerFichero(db);// @suppress("Invalid arguments")
 
                        break;
                case 2:

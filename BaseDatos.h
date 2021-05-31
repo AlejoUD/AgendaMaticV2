@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include "sqlite3.h"
 #include <string.h>
-#include "Tarea.h";
+#include "Tarea.h"
 
 #ifndef BASEDATOS_H_
 #define BASEDATOS_H_
