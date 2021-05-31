@@ -17,11 +17,14 @@ int GetInput()
 
 void MostrarMenuPrincipal()
 {
-	cout << "Bienvenid@ a AgendaMatic! (V 2.0)\n";
-    cout << "Por favor, haz tu seleccion:\n";
-    cout << "1 - Leer fichero\n";
-    cout << "2 - Y\n";
-    cout << "3 - Salir\n";
+	cout << "Bienvenid@ a AgendaMatic! (V 2.0) \n";
+    cout << "Por favor, haz tu seleccion: \n";
+    cout << "1 - Leer tareas. \n";
+    cout << "2 - Insertar tareas. \n";
+    cout << "3 - Borrar tareas. \n";
+    cout << "4 - Ordenar tareas por importancia. \n";
+    cout << "5 - Ordenar tareas por duración. \n";
+    cout << "6 - Salir. \n";
     cout << "Opcion: ";
 }
 
@@ -44,23 +47,33 @@ int main(int argc, char *argv[])
        choice = GetInput();
        switch(choice) {
                case 1:
-                       cout << "Has elegido la opción de Leer Fichero: \n";
-                       leerFichero(db);// @suppress("Invalid arguments")
-
-                       break;
+            	   cout << "Has elegido la opción de Leer Fichero: \n";
+            	   leerFichero(db);// @suppress("Invalid arguments")
+            	   break;
                case 2:
-            	   	   cout << "Has elegido la opcion: 2\n";
-            	   	   cout << "Introduce un numero para continuar: ";
-            	   	   choice = GetInput();
-                       break;
+            	   cout << "Has elegido Insertar Tarea \n";
+
+            	   break;
                case 3:
-                       cout << "Gracias por usar AgendaMatic, nos vemos!\n";
-                       break;
+            	   cout << "Has elegido Borrar Tareas \n";
+            	   borrarTareas(db); // @suppress("Invalid arguments")
+                   break;
+               case 4:
+            	   cout << "Has elegido Ordenar Tareas por Importancia \n";
+            	   ordenarTareasImp(db); // @suppress("Invalid arguments")
+            	   break;
+               case 5:
+            	   cout << "Has elegido Ordenar Tareas por Duración \n";
+            	   ordenarTareasDur(db); // @suppress("Invalid arguments")
+            	   break;
+               case 6:
+            	   cout << "Gracias por usar AgendaMatic, nos vemos!\n";
+            	   break;
 
                default:
                        break;
               }
-      } while(choice!=3);
+      } while(choice!=6);
     system("PAUSE");
     return EXIT_SUCCESS;
 }
