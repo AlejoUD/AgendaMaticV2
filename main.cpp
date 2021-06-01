@@ -49,10 +49,12 @@ int main(void)
                case 1:
             	   cout << "Has elegido Ordenar Tareas por Importancia \n";
             	   ordenarTareasImp(db); // @suppress("Invalid arguments")
+            	   system("PAUSE");
             	   break;
                case 2:
             	   cout << "Has elegido Ordenar Tareas por Duración \n";
             	   ordenarTareasDur(db); // @suppress("Invalid arguments")
+            	   system("PAUSE");
             	   break;
                case 3:
             	   cout << "Gracias por usar AgendaMatic, nos vemos!\n";
