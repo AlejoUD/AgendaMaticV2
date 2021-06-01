@@ -18,14 +18,7 @@ int GetInput()
 
 void MostrarMenuPrincipal()
 {
-//	char* consulta = "titulo'";
-//	char sql[] = "select id, fecha, importancia, duracion, titulo, Descripcion from tareas where titulo LIKE '";
-//	strncat(sql, consulta, strlen(consulta));
-
-//	printf(sql);
-//	printf("\n");
-
-	cout << "Bienvenid@ a AgendaMatic! (V 2.0) \n";
+    cout << "Bienvenid@ a AgendaMatic! (V 2.0) \n";
     cout << "Por favor, haz tu seleccion: \n";
     cout << "1 - Ordenar tareas por importancia. \n";
     cout << "2 - Ordenar tareas por duración. \n";
