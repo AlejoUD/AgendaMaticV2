@@ -17,6 +17,7 @@ int insertarTareas(sqlite3 *db, Tarea *tarea);
 int borrarTareas(sqlite3 *db);
 int ordenarTareasImp(sqlite3 *db);
 int ordenarTareasDur(sqlite3 *db);
+int buscarTareaTitulo(const char* titulo, sqlite3 *db);
 
 
 #endif /* BASEDATOS_H_ */

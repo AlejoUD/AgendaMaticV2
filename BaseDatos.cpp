@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include "sqlite3.h"
 #include <string.h>
+#include <iostream>
 
 #include <string>
 using namespace std;
@@ -216,3 +217,63 @@ int ordenarTareasDur(sqlite3 *db) {
 	return SQLITE_OK;
 }
 
+int buscarTareaTitulo(const char* tituloSeleccionado, sqlite3 *db) {
+
+	// Cargar base de datos
+	sqlite3_stmt *stmt;
+
+	// Crear string para cambiarlo
+	char sqlf[] = "select id, fecha, importancia, duracion, titulo, Descripcion from tareas where titulo LIKE '%";
+	strncat(sqlf, tituloSeleccionado, strlen(tituloSeleccionado)+1);
+	strncat(sqlf, "%'", 3);
+
+	// Copiar el string cambiado al bueno
+	char sql[] = "select id, fecha, importancia, duracion, titulo, Descripcion from tareas where titulo LIKE '%titulo%'";
+	strcpy(sql, sqlf);
+
+	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ; // @suppress("Invalid arguments")
+	if (result != SQLITE_OK) {
+		printf("Error preparando la sentencia (SELECT)\n");
+		printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		return result;
+	}
+
+	printf("consulta SQL preparada (SELECT)\n");
+
+	char fecha[10];
+	char titulo[50];
+	int duracion;
+	int importancia;
+	char descripcion[250];
+
+	printf("\n");
+	printf("\n");
+	printf("Mostrando la tarea: %s\n", tituloSeleccionado);
+	do {
+		result = sqlite3_step(stmt) ; // @suppress("Invalid arguments")
+		if (result == SQLITE_ROW) {
+			strcpy(titulo, (char *) sqlite3_column_text(stmt,4 )); // @suppress("Invalid arguments")
+				strcpy(fecha, (char *) sqlite3_column_text(stmt, 1)); // @suppress("Invalid arguments")
+				importancia= sqlite3_column_int(stmt, 2); // @suppress("Invalid arguments")
+				duracion= sqlite3_column_int(stmt, 3); // @suppress("Invalid arguments")
+				strcpy(titulo, (char *) sqlite3_column_text(stmt,4 )); // @suppress("Invalid arguments")
+				strcpy(descripcion, (char *) sqlite3_column_text(stmt, 5)); // @suppress("Invalid arguments")
+				printf("Fecha: %s Duracion: %d Importancia: %d Titulo %s Descripcion%s\n", fecha,duracion,importancia,titulo,descripcion );
+		}
+	} while (result == SQLITE_ROW);
+
+	printf("\n");
+	printf("\n");
+
+	// Cerrar base de datos
+	result = sqlite3_finalize(stmt); // @suppress("Invalid arguments")
+	if (result != SQLITE_OK) {
+		printf("Error finalizando consulta (SELECT)\n");
+		printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		return result;
+	}
+
+	printf("Consulta finalizada (SELECT)\n");
+
+	return SQLITE_OK;
+}
