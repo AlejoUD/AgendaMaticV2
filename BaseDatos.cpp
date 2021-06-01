@@ -273,7 +273,7 @@ int buscarTareaTitulo(const char* tituloSeleccionado, sqlite3 *db) {
 		return result;
 	}
 
-	printf("Consulta finalizada (SELECT)\n");
+	//printf("Consulta finalizada (SELECT)\n");
 
 	return SQLITE_OK;
 }
