@@ -277,3 +277,113 @@ int buscarTareaTitulo(const char* tituloSeleccionado, sqlite3 *db) {
 
 	return SQLITE_OK;
 }
+int tareasDuracion(sqlite3 *db, int minutos) {
+	sqlite3_stmt *stmt;
+
+	char sql[] = "select id, fecha, importancia, duracion, titulo, Descripcion from tareas where Descripcion NOT LIKE '%Completada%' ";
+
+	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ; // @suppress("Invalid arguments")
+	if (result != SQLITE_OK) {
+		printf("Error preparando la sentencia (SELECT)\n");
+		printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		return result;
+	}
+
+	printf("consulta SQL preparada (SELECT)\n");
+
+	int id;
+	char fecha[10];
+	int duracion;
+	int importancia;
+	char titulo[50];
+	char descripcion[250];
+
+	printf("\n");
+	printf("\n");
+	printf("Mostrando las tareas de la duracion introducida:\n");
+	do {
+		result = sqlite3_step(stmt) ; // @suppress("Invalid arguments")
+		if (result == SQLITE_ROW) {
+			//id = sqlite3_column_int(stmt, 0); // @suppress("Invalid arguments")
+			strcpy(fecha, (char *) sqlite3_column_text(stmt, 1)); // @suppress("Invalid arguments")
+			importancia= sqlite3_column_int(stmt, 2); // @suppress("Invalid arguments")
+			duracion= sqlite3_column_int(stmt, 3); // @suppress("Invalid arguments")
+			strcpy(titulo, (char *) sqlite3_column_text(stmt,4 )); // @suppress("Invalid arguments")
+			strcpy(descripcion, (char *) sqlite3_column_text(stmt, 5)); // @suppress("Invalid arguments")
+			if(minutos==duracion)
+			{
+				printf("Fecha: %s Duracion: %d Importancia: %d Titulo %s Descripcion%s\n", fecha,duracion,importancia,titulo,descripcion );
+			}
+
+		}
+	} while (result == SQLITE_ROW);
+
+	printf("\n");
+	printf("\n");
+
+	result = sqlite3_finalize(stmt); // @suppress("Invalid arguments")
+	if (result != SQLITE_OK) {
+		printf("Error finalizando consulta (SELECT)\n");
+		printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		return result;
+	}
+
+	printf("Consulta finalizada (SELECT)\n");
+
+	return SQLITE_OK;
+}
+int tareasImportancia(sqlite3 *db, int importanciaR) {
+	sqlite3_stmt *stmt;
+
+	char sql[] = "select id, fecha, importancia, duracion, titulo, Descripcion from tareas where Descripcion NOT LIKE '%Completada%' ";
+
+	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ; // @suppress("Invalid arguments")
+	if (result != SQLITE_OK) {
+		printf("Error preparando la sentencia (SELECT)\n");
+		printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		return result;
+	}
+
+	printf("consulta SQL preparada (SELECT)\n");
+
+	int id;
+	char fecha[10];
+	int duracion;
+	int importancia;
+	char titulo[50];
+	char descripcion[250];
+
+	printf("\n");
+	printf("\n");
+	printf("Mostrando las tareas de la importancia introducida:\n");
+	do {
+		result = sqlite3_step(stmt) ; // @suppress("Invalid arguments")
+		if (result == SQLITE_ROW) {
+			//id = sqlite3_column_int(stmt, 0); // @suppress("Invalid arguments")
+			strcpy(fecha, (char *) sqlite3_column_text(stmt, 1)); // @suppress("Invalid arguments")
+			importancia= sqlite3_column_int(stmt, 2); // @suppress("Invalid arguments")
+			duracion= sqlite3_column_int(stmt, 3); // @suppress("Invalid arguments")
+			strcpy(titulo, (char *) sqlite3_column_text(stmt,4 )); // @suppress("Invalid arguments")
+			strcpy(descripcion, (char *) sqlite3_column_text(stmt, 5)); // @suppress("Invalid arguments")
+			if(importanciaR==importancia)
+			{
+				printf("Fecha: %s Duracion: %d Importancia: %d Titulo %s Descripcion%s\n", fecha,duracion,importancia,titulo,descripcion );
+			}
+
+		}
+	} while (result == SQLITE_ROW);
+
+	printf("\n");
+	printf("\n");
+
+	result = sqlite3_finalize(stmt); // @suppress("Invalid arguments")
+	if (result != SQLITE_OK) {
+		printf("Error finalizando consulta (SELECT)\n");
+		printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		return result;
+	}
+
+	printf("Consulta finalizada (SELECT)\n");
+
+	return SQLITE_OK;
+}
