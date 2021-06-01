@@ -18,8 +18,8 @@ int borrarTareas(sqlite3 *db);
 int ordenarTareasImp(sqlite3 *db);
 int ordenarTareasDur(sqlite3 *db);
 int buscarTareaTitulo(const char* titulo, sqlite3 *db);
-int tareasDuracion(sqlite3 *db, int minutos);
-int tareasImportancia(sqlite3 *db, int importanciaR);
+int tareasDuracion(sqlite3 *db, int minutos, int opcion);
+int tareasImportancia(sqlite3 *db, int importanciaR, int opcion);
 
 
 #endif /* BASEDATOS_H_ */

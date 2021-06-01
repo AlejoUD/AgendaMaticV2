@@ -25,7 +25,9 @@ void MostrarMenuPrincipal()
     cout << "3 - Buscar una tarea por el titulo. \n";
     cout << "4 - Ver tareas de una duracion determinada. \n";
     cout << "5 - Ver tareas de una importancia determinada. \n";
-    cout << "6 - Salir. \n";
+    cout << "6 - Ver tareas de una duracion menor a una determinada. \n";
+    cout << "7 - Ver tareas de una importancia menor a una determinada. \n";
+    cout << "8 - Salir. \n";
     cout << "Opcion: ";
 }
 
@@ -77,7 +79,7 @@ int main(void)
                    int minutos;
                    cin >> minutos;
 
-                   tareasDuracion(db,minutos); // @suppress("Invalid arguments")
+                   tareasDuracion(db,minutos,0); // @suppress("Invalid arguments")
                    system("PAUSE");
                    break;
                case 5:
@@ -87,18 +89,38 @@ int main(void)
                    int importanciaR;
                    cin >> importanciaR;
 
-                   tareasImportancia(db,importanciaR); // @suppress("Invalid arguments")
+                   tareasImportancia(db,importanciaR,0); // @suppress("Invalid arguments")
+                   system("PAUSE");
+                   break;
+               case 6:
+                   cout << "Has elegido ver tareas de una duracion menor a una determinada \n";
+                   // Recoger datos por entrada
+                   cout << "Introduce la duracion en minutos: \n";
+                   int minutosM;
+                   cin >> minutosM;
+
+                   tareasDuracion(db,minutosM,1); // @suppress("Invalid arguments")
+                   system("PAUSE");
+                   break;
+               case 7:
+                   cout << "Has elegido ver tareas de una importancia menor a una determinada \n";
+                   // Recoger datos por entrada
+                   cout << "Introduce la importancia del 1 al 10 \n";
+                   int importanciaRM;
+                   cin >> importanciaRM;
+
+                   tareasImportancia(db,importanciaRM,1); // @suppress("Invalid arguments")
                    system("PAUSE");
                    break;
 
-               case 6:
+               case 8:
             	   cout << "Gracias por usar AgendaMatic, nos vemos!\n";
             	   break;
 
                default:
                        break;
               }
-      } while(choice!=6);
+      } while(choice!=8);
     system("PAUSE");
     return EXIT_SUCCESS;
 }

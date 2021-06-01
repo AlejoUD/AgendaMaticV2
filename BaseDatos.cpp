@@ -277,7 +277,7 @@ int buscarTareaTitulo(const char* tituloSeleccionado, sqlite3 *db) {
 
 	return SQLITE_OK;
 }
-int tareasDuracion(sqlite3 *db, int minutos) {
+int tareasDuracion(sqlite3 *db, int minutos, int opcion) {
 	sqlite3_stmt *stmt;
 
 	char sql[] = "select id, fecha, importancia, duracion, titulo, Descripcion from tareas where Descripcion NOT LIKE '%Completada%' ";
@@ -310,7 +310,10 @@ int tareasDuracion(sqlite3 *db, int minutos) {
 			duracion= sqlite3_column_int(stmt, 3); // @suppress("Invalid arguments")
 			strcpy(titulo, (char *) sqlite3_column_text(stmt,4 )); // @suppress("Invalid arguments")
 			strcpy(descripcion, (char *) sqlite3_column_text(stmt, 5)); // @suppress("Invalid arguments")
-			if(minutos==duracion)
+			if((minutos==duracion)&&opcion==0)
+			{
+				printf("Fecha: %s Duracion: %d Importancia: %d Titulo %s Descripcion%s\n", fecha,duracion,importancia,titulo,descripcion );
+			}else if((duracion<minutos)&&opcion==1)
 			{
 				printf("Fecha: %s Duracion: %d Importancia: %d Titulo %s Descripcion%s\n", fecha,duracion,importancia,titulo,descripcion );
 			}
@@ -332,7 +335,7 @@ int tareasDuracion(sqlite3 *db, int minutos) {
 
 	return SQLITE_OK;
 }
-int tareasImportancia(sqlite3 *db, int importanciaR) {
+int tareasImportancia(sqlite3 *db, int importanciaR, int opcion) {
 	sqlite3_stmt *stmt;
 
 	char sql[] = "select id, fecha, importancia, duracion, titulo, Descripcion from tareas where Descripcion NOT LIKE '%Completada%' ";
@@ -365,7 +368,10 @@ int tareasImportancia(sqlite3 *db, int importanciaR) {
 			duracion= sqlite3_column_int(stmt, 3); // @suppress("Invalid arguments")
 			strcpy(titulo, (char *) sqlite3_column_text(stmt,4 )); // @suppress("Invalid arguments")
 			strcpy(descripcion, (char *) sqlite3_column_text(stmt, 5)); // @suppress("Invalid arguments")
-			if(importanciaR==importancia)
+			if((importanciaR==importancia)&&opcion==0)
+			{
+				printf("Fecha: %s Duracion: %d Importancia: %d Titulo %s Descripcion%s\n", fecha,duracion,importancia,titulo,descripcion );
+			}else if((importancia<importanciaR)&&opcion==1)
 			{
 				printf("Fecha: %s Duracion: %d Importancia: %d Titulo %s Descripcion%s\n", fecha,duracion,importancia,titulo,descripcion );
 			}
