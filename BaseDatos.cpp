@@ -21,62 +21,62 @@ int insertarTareas(sqlite3 *db, Tarea *tarea) {
 	char sql[] = "insert into tareas (id, fecha, importancia, duracion, titulo, Descripcion) values (NULL, ?, ?, ?, ?, ?)";
 	int result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL) ; // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//printf("Error preparando la sentencia (INSERT)\n");
-		//printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error preparando la sentencia (INSERT)\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
-	//printf("consulta SQL preparada (INSERT)\n");
+	//cout<<"consulta SQL preparada (INSERT)\n");
 
 	result = sqlite3_bind_text(stmt, 1, tarea->getFecha(), strlen(tarea->getFecha()), SQLITE_STATIC); // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//printf("Error introduciendo los parametros\n");
-		//printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error introduciendo los parametros\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
 	result = sqlite3_bind_int(stmt, 2, tarea->getImportancia()); // // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//printf("Error introduciendo los parametros\n");
-		//printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error introduciendo los parametros\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
 	result = sqlite3_bind_int(stmt, 3, tarea->getDuracion()); // // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//printf("Error introduciendo los parametros\n");
-		//printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error introduciendo los parametros\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
 	result = sqlite3_bind_text(stmt, 4, tarea->getTitulo(), strlen(tarea->getTitulo()), SQLITE_STATIC); // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//printf("Error introduciendo los parametros\n");
-		//printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error introduciendo los parametros\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
 	result = sqlite3_bind_text(stmt, 5, tarea->getDescripcion(), strlen(tarea->getDescripcion()), SQLITE_STATIC); // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//printf("Error introduciendo los parametros\n");
-		//printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error introduciendo los parametros\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
 	result = sqlite3_step(stmt); // @suppress("Invalid arguments")
 	if (result != SQLITE_DONE) {
-		//printf("Error insertando table\n");
+		//cout<<"Error insertando table\n");
 		return result;
 	}
 
 	result = sqlite3_finalize(stmt); // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//printf("Error finalizando consulta (INSERT)\n");
-		//printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error finalizando consulta (INSERT)\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
-	//printf("Consulta finalizada (INSERT)\n");
+	//cout<<"Consulta finalizada (INSERT)\n");
 
 	return SQLITE_OK;
 }
@@ -87,28 +87,28 @@ int borrarTareas(sqlite3 *db) {
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ; // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//printf("Error preparando la sentencia (DELETE)\n");
-		//printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error preparando la sentencia (DELETE)\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
-	//printf("consulta SQL preparada (DELETE)\n");
+	//cout<<"consulta SQL preparada (DELETE)\n");
 
 	result = sqlite3_step(stmt); // @suppress("Invalid arguments")
 	if (result != SQLITE_DONE) {
-		//printf("Error borrando datos\n");
-		//printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error borrando datos\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
 	result = sqlite3_finalize(stmt); // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//printf("Error finalizando consulta (DELETE)\n");
-		//printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error finalizando consulta (DELETE)\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
-	//printf("Consulta finalizada (DELETE)\n");
+	//cout<<"Consulta finalizada (DELETE)\n");
 
 	return SQLITE_OK;
 }
@@ -120,12 +120,12 @@ int ordenarTareasImp(sqlite3 *db) {
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ; // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		printf("Error preparando la sentencia (SELECT)\n");
-		printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error preparando la sentencia (SELECT)\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
-	//printf("consulta SQL preparada (SELECT)\n");
+	//cout<<"consulta SQL preparada (SELECT)\n");
 
 	int id;
 	char fecha[10];
@@ -134,9 +134,9 @@ int ordenarTareasImp(sqlite3 *db) {
 	char titulo[50];
 	char descripcion[250];
 
-	printf("\n");
-	printf("\n");
-	printf("Mostrando tareas ordenadas por importancia:\n");
+	cout<<endl;
+	cout<<endl;
+	cout<<"Mostrando tareas ordenadas por importancia:"<<endl;
 	do {
 		result = sqlite3_step(stmt) ; // @suppress("Invalid arguments")
 		if (result == SQLITE_ROW) {
@@ -146,21 +146,21 @@ int ordenarTareasImp(sqlite3 *db) {
 			duracion= sqlite3_column_int(stmt, 3); // @suppress("Invalid arguments")
 			strcpy(titulo, (char *) sqlite3_column_text(stmt,4 )); // @suppress("Invalid arguments")
 			strcpy(descripcion, (char *) sqlite3_column_text(stmt, 5)); // @suppress("Invalid arguments")
-			printf("Fecha: %s Duracion: %d Importancia: %d Titulo %s Descripcion%s\n", fecha,duracion,importancia,titulo,descripcion );
+			cout << "Fecha: "<< fecha<< " Duracion: "<<duracion<< " Importancia: "<<importancia<< " Titulo: "<<titulo<< " Descripcion: " <<descripcion<< endl;
 		}
 	} while (result == SQLITE_ROW);
 
-	printf("\n");
-	printf("\n");
+	cout<<endl;
+	cout<<endl;
 
 	result = sqlite3_finalize(stmt); // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//printf("Error finalizando consulta (SELECT)\n");
-		//printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error finalizando consulta (SELECT)\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
-	//printf("Consulta finalizada (SELECT)\n");
+	//cout<<"Consulta finalizada (SELECT)\n");
 
 	return SQLITE_OK;
 }
@@ -172,12 +172,12 @@ int ordenarTareasDur(sqlite3 *db) {
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ; // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//printf("Error preparando la sentencia (SELECT)\n");
-		//printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error preparando la sentencia (SELECT)\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
-	//printf("consulta SQL preparada (SELECT)\n");
+	//cout<<"consulta SQL preparada (SELECT)\n");
 
 	int id;
 	char fecha[10];
@@ -186,9 +186,9 @@ int ordenarTareasDur(sqlite3 *db) {
 	char titulo[50];
 	char descripcion[250];
 
-	printf("\n");
-	printf("\n");
-	printf("Mostrando tareas ordenadas por duracion:\n");
+	cout<<endl;
+	cout<<endl;
+	cout<<"Mostrando tareas ordenadas por duracion:"<<endl;
 	do {
 		result = sqlite3_step(stmt) ; // @suppress("Invalid arguments")
 		if (result == SQLITE_ROW) {
@@ -198,21 +198,21 @@ int ordenarTareasDur(sqlite3 *db) {
 			duracion= sqlite3_column_int(stmt, 3); // @suppress("Invalid arguments")
 			strcpy(titulo, (char *) sqlite3_column_text(stmt,4 )); // @suppress("Invalid arguments")
 			strcpy(descripcion, (char *) sqlite3_column_text(stmt, 5)); // @suppress("Invalid arguments")
-			printf("Fecha: %s Duracion: %d Importancia: %d Titulo %s Descripcion%s\n", fecha,duracion,importancia,titulo,descripcion );
+			cout << "Fecha: "<< fecha<< " Duracion: "<<duracion<< " Importancia: "<<importancia<< " Titulo: "<<titulo<< " Descripcion: " <<descripcion<< endl;
 		}
 	} while (result == SQLITE_ROW);
 
-	printf("\n");
-	printf("\n");
+	cout<<endl;
+	cout<<endl;
 
 	result = sqlite3_finalize(stmt); // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//printf("Error finalizando consulta (SELECT)\n");
-		//printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error finalizando consulta (SELECT)\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
-	//printf("Consulta finalizada (SELECT)\n");
+	//cout<<"Consulta finalizada (SELECT)\n");
 
 	return SQLITE_OK;
 }
@@ -233,12 +233,12 @@ int buscarTareaTitulo(const char* tituloSeleccionado, sqlite3 *db) {
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ; // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//printf("Error preparando la sentencia (SELECT)\n");
-		//printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error preparando la sentencia (SELECT)\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
-	//printf("consulta SQL preparada (SELECT)\n");
+	//cout<<"consulta SQL preparada (SELECT)\n");
 
 	char fecha[10];
 	char titulo[50];
@@ -246,9 +246,9 @@ int buscarTareaTitulo(const char* tituloSeleccionado, sqlite3 *db) {
 	int importancia;
 	char descripcion[250];
 
-	printf("\n");
-	printf("\n");
-	printf("Mostrando la tarea: %s\n", tituloSeleccionado);
+	cout<<endl;
+	cout<<endl;
+	cout<<"Mostrando las tareas:"<<endl;
 	do {
 		result = sqlite3_step(stmt) ; // @suppress("Invalid arguments")
 		if (result == SQLITE_ROW) {
@@ -258,22 +258,22 @@ int buscarTareaTitulo(const char* tituloSeleccionado, sqlite3 *db) {
 				duracion= sqlite3_column_int(stmt, 3); // @suppress("Invalid arguments")
 				strcpy(titulo, (char *) sqlite3_column_text(stmt,4 )); // @suppress("Invalid arguments")
 				strcpy(descripcion, (char *) sqlite3_column_text(stmt, 5)); // @suppress("Invalid arguments")
-				printf("Fecha: %s Duracion: %d Importancia: %d Titulo %s Descripcion%s\n", fecha,duracion,importancia,titulo,descripcion );
+				cout << "Fecha: "<< fecha<< " Duracion: "<<duracion<< " Importancia: "<<importancia<< " Titulo: "<<titulo<< " Descripcion: " <<descripcion<< endl;
 		}
 	} while (result == SQLITE_ROW);
 
-	printf("\n");
-	printf("\n");
+	cout<<endl;
+	cout<<endl;
 
 	// Cerrar base de datos
 	result = sqlite3_finalize(stmt); // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//printf("Error finalizando consulta (SELECT)\n");
-		//printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error finalizando consulta (SELECT)\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
-	//printf("Consulta finalizada (SELECT)\n");
+	//cout<<"Consulta finalizada (SELECT)\n");
 
 	return SQLITE_OK;
 }
@@ -284,12 +284,12 @@ int tareasDuracion(sqlite3 *db, int minutos, int opcion) {
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ; // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//printf("Error preparando la sentencia (SELECT)\n");
-		//printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error preparando la sentencia (SELECT)\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
-	//printf("consulta SQL preparada (SELECT)\n");
+	//cout<<"consulta SQL preparada (SELECT)\n");
 
 	int id;
 	char fecha[10];
@@ -298,9 +298,9 @@ int tareasDuracion(sqlite3 *db, int minutos, int opcion) {
 	char titulo[50];
 	char descripcion[250];
 
-	printf("\n");
-	printf("\n");
-	printf("Mostrando las tareas de la duracion introducida:\n");
+	cout<<endl;
+	cout<<endl;
+	cout<<"Mostrando las tareas de la duracion introducida:"<<endl;
 	do {
 		result = sqlite3_step(stmt) ; // @suppress("Invalid arguments")
 		if (result == SQLITE_ROW) {
@@ -312,26 +312,26 @@ int tareasDuracion(sqlite3 *db, int minutos, int opcion) {
 			strcpy(descripcion, (char *) sqlite3_column_text(stmt, 5)); // @suppress("Invalid arguments")
 			if((minutos==duracion)&&opcion==0)
 			{
-				printf("Fecha: %s Duracion: %d Importancia: %d Titulo %s Descripcion%s\n", fecha,duracion,importancia,titulo,descripcion );
+				cout << "Fecha: "<< fecha<< " Duracion: "<<duracion<< " Importancia: "<<importancia<< " Titulo: "<<titulo<< " Descripcion: " <<descripcion<< endl;
 			}else if((duracion<minutos)&&opcion==1)
 			{
-				printf("Fecha: %s Duracion: %d Importancia: %d Titulo %s Descripcion%s\n", fecha,duracion,importancia,titulo,descripcion );
+				cout << "Fecha: "<< fecha<< " Duracion: "<<duracion<< " Importancia: "<<importancia<< " Titulo: "<<titulo<< " Descripcion: " <<descripcion<< endl;
 			}
 
 		}
 	} while (result == SQLITE_ROW);
 
-	printf("\n");
-	printf("\n");
+	cout<<endl;
+	cout<<endl;
 
 	result = sqlite3_finalize(stmt); // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//printf("Error finalizando consulta (SELECT)\n");
-		//printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error finalizando consulta (SELECT)\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
-	//printf("Consulta finalizada (SELECT)\n");
+	//cout<<"Consulta finalizada (SELECT)\n");
 
 	return SQLITE_OK;
 }
@@ -342,12 +342,12 @@ int tareasImportancia(sqlite3 *db, int importanciaR, int opcion) {
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ; // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//printf("Error preparando la sentencia (SELECT)\n");
-		//printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error preparando la sentencia (SELECT)\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
-	//printf("consulta SQL preparada (SELECT)\n");
+	//cout<<"consulta SQL preparada (SELECT)\n");
 
 	int id;
 	char fecha[10];
@@ -356,9 +356,9 @@ int tareasImportancia(sqlite3 *db, int importanciaR, int opcion) {
 	char titulo[50];
 	char descripcion[250];
 
-	printf("\n");
-	printf("\n");
-	printf("Mostrando las tareas de la importancia introducida:\n");
+	cout<<endl;
+	cout<<endl;
+	cout<<"Mostrando las tareas de la importancia introducida: "<<endl;
 	do {
 		result = sqlite3_step(stmt) ; // @suppress("Invalid arguments")
 		if (result == SQLITE_ROW) {
@@ -370,26 +370,26 @@ int tareasImportancia(sqlite3 *db, int importanciaR, int opcion) {
 			strcpy(descripcion, (char *) sqlite3_column_text(stmt, 5)); // @suppress("Invalid arguments")
 			if((importanciaR==importancia)&&opcion==0)
 			{
-				printf("Fecha: %s Duracion: %d Importancia: %d Titulo %s Descripcion%s\n", fecha,duracion,importancia,titulo,descripcion );
+				cout << "Fecha: "<< fecha<< " Duracion: "<<duracion<< " Importancia: "<<importancia<< " Titulo: "<<titulo<< " Descripcion: " <<descripcion<< endl;
 			}else if((importancia>importanciaR)&&opcion==1)
 			{
-				printf("Fecha: %s Duracion: %d Importancia: %d Titulo %s Descripcion%s\n", fecha,duracion,importancia,titulo,descripcion );
+				cout << "Fecha: "<< fecha<< " Duracion: "<<duracion<< " Importancia: "<<importancia<< " Titulo: "<<titulo<< " Descripcion: " <<descripcion<< endl;
 			}
 
 		}
 	} while (result == SQLITE_ROW);
 
-	printf("\n");
-	printf("\n");
+	cout<<endl;
+	cout<<endl;
 
 	result = sqlite3_finalize(stmt); // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//printf("Error finalizando consulta (SELECT)\n");
-		//printf("%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		//cout<<"Error finalizando consulta (SELECT)\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
 		return result;
 	}
 
-	//printf("Consulta finalizada (SELECT)\n");
+	//cout<<"Consulta finalizada (SELECT)\n");
 
 	return SQLITE_OK;
 }
