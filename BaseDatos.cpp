@@ -289,7 +289,7 @@ int tareasDuracion(sqlite3 *db, int minutos, int opcion) {
 		return result;
 	}
 
-	printf("consulta SQL preparada (SELECT)\n");
+	//printf("consulta SQL preparada (SELECT)\n");
 
 	int id;
 	char fecha[10];
@@ -389,7 +389,7 @@ int tareasImportancia(sqlite3 *db, int importanciaR, int opcion) {
 		return result;
 	}
 
-	printf("Consulta finalizada (SELECT)\n");
+	//printf("Consulta finalizada (SELECT)\n");
 
 	return SQLITE_OK;
 }
