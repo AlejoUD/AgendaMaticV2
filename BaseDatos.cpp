@@ -371,7 +371,7 @@ int tareasImportancia(sqlite3 *db, int importanciaR, int opcion) {
 			if((importanciaR==importancia)&&opcion==0)
 			{
 				printf("Fecha: %s Duracion: %d Importancia: %d Titulo %s Descripcion%s\n", fecha,duracion,importancia,titulo,descripcion );
-			}else if((importancia<importanciaR)&&opcion==1)
+			}else if((importancia>importanciaR)&&opcion==1)
 			{
 				printf("Fecha: %s Duracion: %d Importancia: %d Titulo %s Descripcion%s\n", fecha,duracion,importancia,titulo,descripcion );
 			}

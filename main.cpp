@@ -25,8 +25,8 @@ void MostrarMenuPrincipal()
     cout << "3 - Buscar una tarea por el titulo. \n";
     cout << "4 - Ver tareas de una duracion determinada. \n";
     cout << "5 - Ver tareas de una importancia determinada. \n";
-    cout << "6 - Ver tareas de una duracion menor a una determinada. \n";
-    cout << "7 - Ver tareas de una importancia menor a una determinada. \n";
+    cout << "6 - Ver tareas con una duracion menor a una determinada. \n";
+    cout << "7 - Ver tareas con una importancia mayor a una determinada. \n";
     cout << "8 - Salir. \n";
     cout << "Opcion: ";
 }
@@ -93,7 +93,7 @@ int main(void)
                    system("PAUSE");
                    break;
                case 6:
-                   cout << "Has elegido ver tareas de una duracion menor a una determinada \n";
+                   cout << "Has elegido ver tareas con una duracion menor a una determinada \n";
                    // Recoger datos por entrada
                    cout << "Introduce la duracion en minutos: \n";
                    int minutosM;
@@ -103,7 +103,7 @@ int main(void)
                    system("PAUSE");
                    break;
                case 7:
-                   cout << "Has elegido ver tareas de una importancia menor a una determinada \n";
+                   cout << "Has elegido ver tareas con una importancia mayor a una determinada \n";
                    // Recoger datos por entrada
                    cout << "Introduce la importancia del 1 al 10 \n";
                    int importanciaRM;
