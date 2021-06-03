@@ -27,7 +27,8 @@ void MostrarMenuPrincipal()
     cout << "5 - Ver tareas de una importancia determinada. \n";
     cout << "6 - Ver tareas con una duracion menor a una determinada. \n";
     cout << "7 - Ver tareas con una importancia mayor a una determinada. \n";
-    cout << "8 - Salir. \n";
+    cout << "8 - Mostrar todas las tareas (incluyendo las completadas). \n";
+    cout << "9 - Salir. \n";
     cout << "Opcion: ";
 }
 
@@ -112,15 +113,22 @@ int main(void)
                    tareasImportancia(db,importanciaRM,1); // @suppress("Invalid arguments")
                    system("PAUSE");
                    break;
-
                case 8:
+                   cout << "Has elegido ver todas la tareas (incluyendo las COMPLETADAS)\n";
+                   // Recoger datos por entrada
+
+                   mostrarTodasTareas(db); // @suppress("Invalid arguments")
+                   system("PAUSE");
+                   break;
+
+               case 9:
             	   cout << "Gracias por usar AgendaMatic, nos vemos!\n";
             	   break;
 
                default:
                        break;
               }
-      } while(choice!=8);
+      } while(choice!=9);
     system("PAUSE");
     return EXIT_SUCCESS;
 }
