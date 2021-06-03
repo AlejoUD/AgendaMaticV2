@@ -55,11 +55,13 @@ int main(void)
 
                case 1:
             	   cout << "Has elegido Ordenar Tareas por Importancia \n";
+		   // Llamada al método
             	   ordenarTareasImp(db); // @suppress("Invalid arguments")
             	   system("PAUSE");
             	   break;
                case 2:
             	   cout << "Has elegido Ordenar Tareas por Duración \n";
+		   // Llamada al método
             	   ordenarTareasDur(db); // @suppress("Invalid arguments")
             	   system("PAUSE");
             	   break;
@@ -69,7 +71,7 @@ int main(void)
                    cout << "Introduce el titulo a buscar: \n";
                    char titulo[50];
                    cin >> titulo;
-
+		   // Llamada al método
                    buscarTareaTitulo(titulo, db); // @suppress("Invalid arguments")
                    system("PAUSE");
                    break;
@@ -79,7 +81,7 @@ int main(void)
                    cout << "Introduce la duracion en minutos: \n";
                    int minutos;
                    cin >> minutos;
-
+		   // Llamada al método
                    tareasDuracion(db,minutos,0); // @suppress("Invalid arguments")
                    system("PAUSE");
                    break;
@@ -89,7 +91,7 @@ int main(void)
                    cout << "Introduce la importancia del 1 al 10 \n";
                    int importanciaR;
                    cin >> importanciaR;
-
+		   // Llamada al método
                    tareasImportancia(db,importanciaR,0); // @suppress("Invalid arguments")
                    system("PAUSE");
                    break;
@@ -99,7 +101,7 @@ int main(void)
                    cout << "Introduce la duracion en minutos: \n";
                    int minutosM;
                    cin >> minutosM;
-
+		   // Llamada al método
                    tareasDuracion(db,minutosM,1); // @suppress("Invalid arguments")
                    system("PAUSE");
                    break;
@@ -109,14 +111,13 @@ int main(void)
                    cout << "Introduce la importancia del 1 al 10 \n";
                    int importanciaRM;
                    cin >> importanciaRM;
-
+		   // Llamada al método
                    tareasImportancia(db,importanciaRM,1); // @suppress("Invalid arguments")
                    system("PAUSE");
                    break;
                case 8:
                    cout << "Has elegido ver todas la tareas (incluyendo las COMPLETADAS)\n";
-                   // Recoger datos por entrada
-
+		   // Llamada al método
                    mostrarTodasTareas(db); // @suppress("Invalid arguments")
                    system("PAUSE");
                    break;
@@ -128,7 +129,7 @@ int main(void)
                default:
                        break;
               }
-      } while(choice!=9);
+      } while(choice!=9); // Si la opción no es 9 (salir), volver a mostrar el menú
     system("PAUSE");
     return EXIT_SUCCESS;
 }
