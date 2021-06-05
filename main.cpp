@@ -21,7 +21,7 @@ void MostrarMenuPrincipal()
     cout << "Bienvenid@ a AgendaMatic! (V 2.0) \n";
     cout << "Por favor, haz tu seleccion: \n";
     cout << "1 - Ordenar tareas por importancia. \n";
-    cout << "2 - Ordenar tareas por duración. \n";
+    cout << "2 - Ordenar tareas por duracion. \n";
     cout << "3 - Buscar una tarea por el titulo. \n";
     cout << "4 - Ver tareas de una duracion determinada. \n";
     cout << "5 - Ver tareas de una importancia determinada. \n";
@@ -131,5 +131,5 @@ int main(void)
               }
       } while(choice!=9); // Si la opción no es 9 (salir), volver a mostrar el menú
     system("PAUSE");
-    return EXIT_SUCCESS;
+    return 0;
 }
