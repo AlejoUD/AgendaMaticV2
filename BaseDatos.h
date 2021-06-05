@@ -21,6 +21,7 @@ int buscarTareaTitulo(const char* titulo, sqlite3 *db);
 int tareasDuracion(sqlite3 *db, int minutos, int opcion);
 int tareasImportancia(sqlite3 *db, int importanciaR, int opcion);
 int mostrarTodasTareas(sqlite3 *db);
+int mostrarTareasSinCompletar(sqlite3 *db);
 
 
 #endif /* BASEDATOS_H_ */

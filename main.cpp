@@ -28,7 +28,8 @@ void MostrarMenuPrincipal()
     cout << "6 - Ver tareas con una duracion menor a una determinada. \n";
     cout << "7 - Ver tareas con una importancia mayor a una determinada. \n";
     cout << "8 - Mostrar todas las tareas (incluyendo las completadas). \n";
-    cout << "9 - Salir. \n";
+    cout << "9 - Mostrar tareas sin completar. \n";
+    cout << "10 - Salir. \n";
     cout << "Opcion: ";
 }
 
@@ -123,6 +124,13 @@ int main(void)
                    break;
 
                case 9:
+            	   cout << "Has elegido ver todas la tareas (incluyendo las COMPLETADAS)\n";
+              		   // Llamada al método
+            	   mostrarTareasSinCompletar(db); // @suppress("Invalid arguments")
+            	   system("PAUSE");
+            	   break;
+
+               case 10:
             	   cout << "Gracias por usar AgendaMatic, nos vemos!\n";
             	   break;
 
