@@ -40,7 +40,6 @@ int main(void)
 	sqlite3 *db;
 	int result = sqlite3_open("Bd.sqlite", &db); // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//printf("Error abriendo la base de datos\n");
 		return result;
 	}
 	borrarTareas(db); // @suppress("Invalid arguments")

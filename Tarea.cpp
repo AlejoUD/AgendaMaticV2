@@ -1,9 +1,3 @@
-/*
- * prueba.cpp
- *
- *  Created on: 15 may. 2021
- *      Author: Julen
- */
 #include "Tarea.h"
 #include <string.h>
 Tarea::Tarea(char *fecha, int duracion, int importancia, char *titulo, char *descripcion)

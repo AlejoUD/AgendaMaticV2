@@ -1,9 +1,3 @@
-/*
- * Fichero.h
- *
- *  Created on: 18 may. 2021
- *      Author: Julen
- */
 #include "BaseDatos.h"
 #ifndef FICHERO_H_
 #define FICHERO_H_

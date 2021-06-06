@@ -1,9 +1,3 @@
-/*
- * BaseDatos.h
- *
- *  Created on: 18 may. 2021
- *      Author: Julen
- */
 #include <stdio.h>
 #include "sqlite3.h"
 #include <string.h>
