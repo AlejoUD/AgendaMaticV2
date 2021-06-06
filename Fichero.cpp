@@ -45,7 +45,7 @@ void leerFichero(sqlite3 *db)
 				if(i==4)
 				{
 					getline(fichero,linea1);
-					cout << linea1 << endl;
+
 
 					strcpy(valor1, linea1.c_str()); // @suppress("Invalid arguments")
 					t->setDescripcion(valor1);
@@ -56,7 +56,7 @@ void leerFichero(sqlite3 *db)
 					if(i==0)
 					{
 						fichero >> linea2;
-						cout << linea2 << endl;
+
 
 						strcpy(valor2, linea2.c_str());
 						t->setFecha(valor2);
@@ -64,7 +64,7 @@ void leerFichero(sqlite3 *db)
 					if(i==1)
 					{
 						fichero >> linea4;
-						cout << linea4 << endl;
+
 
 
 						strcpy(valor4, linea4.c_str());
@@ -73,7 +73,7 @@ void leerFichero(sqlite3 *db)
 					if(i==2)
 					{
 						fichero >> linea5;
-						cout << linea5 << endl;
+
 
 
 						strcpy(valor5, linea5.c_str());
@@ -82,7 +82,7 @@ void leerFichero(sqlite3 *db)
 					if(i==3)
 					{
 						fichero >> linea3;
-						cout << linea3 << endl;
+
 
 						strcpy(valor3, linea3.c_str());
 						t->setTitulo(valor3);
