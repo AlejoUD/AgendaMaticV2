@@ -127,8 +127,7 @@ int ordenarTareasImp(sqlite3 *db) {
 
 	result = sqlite3_finalize(stmt); // @suppress("Invalid arguments")
 	if (result != SQLITE_OK) {
-		//cout<<"Error finalizando consulta (SELECT)\n");
-		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+
 		return result;
 	}
 
