@@ -29,7 +29,8 @@ void MostrarMenuPrincipal()
     cout << "7 - Ver tareas con una importancia mayor a una determinada. \n";
     cout << "8 - Mostrar todas las tareas (incluyendo las completadas). \n";
     cout << "9 - Mostrar tareas sin completar. \n";
-    cout << "10 - Salir. \n";
+    cout << "10 - Ver tareas de una fecha determinada. \n";
+    cout << "11 - Salir. \n";
     cout << "Opcion: ";
 }
 
@@ -56,88 +57,101 @@ int main(void)
 
                case 1:
             	   cout << "Has elegido Ordenar Tareas por Importancia \n";
-		   // Llamada al método
+
             	   ordenarTareasImp(db); // @suppress("Invalid arguments")
             	   system("PAUSE");
             	   break;
                case 2:
             	   cout << "Has elegido Ordenar Tareas por Duración \n";
-		   // Llamada al método
+
             	   ordenarTareasDur(db); // @suppress("Invalid arguments")
             	   system("PAUSE");
             	   break;
                case 3:
                    cout << "Has elegido Buscar tarea por título \n";
-                   // Recoger datos por entrada
+
                    cout << "Introduce el titulo a buscar: \n";
                    char titulo[50];
                    cin >> titulo;
-		   // Llamada al método
+
                    buscarTareaTitulo(titulo, db); // @suppress("Invalid arguments")
                    system("PAUSE");
                    break;
                case 4:
                    cout << "Has elegido ver tareas de una duracion determinada \n";
-                   // Recoger datos por entrada
+
                    cout << "Introduce la duracion en minutos: \n";
                    int minutos;
                    cin >> minutos;
-		   // Llamada al método
+
                    tareasDuracion(db,minutos,0); // @suppress("Invalid arguments")
                    system("PAUSE");
                    break;
                case 5:
                    cout << "Has elegido ver tareas de una importancia determinada \n";
-                   // Recoger datos por entrada
+
                    cout << "Introduce la importancia del 1 al 10 \n";
                    int importanciaR;
                    cin >> importanciaR;
-		   // Llamada al método
+
                    tareasImportancia(db,importanciaR,0); // @suppress("Invalid arguments")
                    system("PAUSE");
                    break;
                case 6:
                    cout << "Has elegido ver tareas con una duracion menor a una determinada \n";
-                   // Recoger datos por entrada
+
                    cout << "Introduce la duracion en minutos: \n";
                    int minutosM;
                    cin >> minutosM;
-		   // Llamada al método
+
                    tareasDuracion(db,minutosM,1); // @suppress("Invalid arguments")
                    system("PAUSE");
                    break;
                case 7:
                    cout << "Has elegido ver tareas con una importancia mayor a una determinada \n";
-                   // Recoger datos por entrada
+
                    cout << "Introduce la importancia del 1 al 10 \n";
                    int importanciaRM;
                    cin >> importanciaRM;
-		   // Llamada al método
+
                    tareasImportancia(db,importanciaRM,1); // @suppress("Invalid arguments")
                    system("PAUSE");
                    break;
                case 8:
                    cout << "Has elegido ver todas la tareas (incluyendo las COMPLETADAS)\n";
-		   // Llamada al método
+
                    mostrarTodasTareas(db); // @suppress("Invalid arguments")
                    system("PAUSE");
                    break;
 
                case 9:
-            	   cout << "Has elegido ver todas la tareas (incluyendo las COMPLETADAS)\n";
-              		   // Llamada al método
+            	   cout << "Has elegido ver las tareas sin completar. \n";
+
             	   mostrarTareasSinCompletar(db); // @suppress("Invalid arguments")
+
             	   system("PAUSE");
+
             	   break;
 
                case 10:
+            	   cout << "Has elegido Buscar tarea por fecha \n";
+
+            	   cout << "Introduce la fecha a buscar: \n";
+            	   char fecha[50];
+            	   cin >> fecha;
+
+            	   buscarTareasFecha(db, fecha); // @suppress("Invalid arguments")
+            	   system("PAUSE");
+            	   break;
+
+               case 11:
             	   cout << "Gracias por usar AgendaMatic, nos vemos!\n";
             	   break;
 
                default:
                        break;
               }
-      } while(choice!=9); // Si la opción no es 9 (salir), volver a mostrar el menú
+      } while(choice!=11);
     system("PAUSE");
     return 0;
 }

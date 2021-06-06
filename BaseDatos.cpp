@@ -489,3 +489,62 @@ int mostrarTareasSinCompletar(sqlite3 *db) {
 
 	return SQLITE_OK;
 }
+
+int buscarTareasFecha(sqlite3 *db, const char* fechaB) {
+
+	// Cargar base de datos
+	sqlite3_stmt *stmt;
+
+	// Crear string para cambiarlo
+	char sqlf[] = "select id, fecha, importancia, duracion, titulo, Descripcion from tareas where fecha LIKE '%";
+	strncat(sqlf, fechaB, strlen(fechaB)+1);
+	strncat(sqlf, "%'", 3);
+
+	// Copiar el string cambiado al bueno
+	char sql[] = "select id, fecha, importancia, duracion, titulo, Descripcion from tareas where fecha LIKE '%fecha%'";
+	strcpy(sql, sqlf);
+
+	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ; // @suppress("Invalid arguments")
+	if (result != SQLITE_OK) {
+		//cout<<"Error preparando la sentencia (SELECT)\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		return result;
+	}
+
+	//cout<<"consulta SQL preparada (SELECT)\n");
+
+	char fecha[10];
+	char titulo[50];
+	int duracion;
+	int importancia;
+	char descripcion[250];
+
+	cout<<endl;
+	cout<<endl;
+	cout<<"Mostrando las tareas:"<<endl;
+	do {
+		result = sqlite3_step(stmt) ; // @suppress("Invalid arguments")
+		if (result == SQLITE_ROW) {
+			strcpy(titulo, (char *) sqlite3_column_text(stmt,4 )); // @suppress("Invalid arguments")
+				strcpy(fecha, (char *) sqlite3_column_text(stmt, 1)); // @suppress("Invalid arguments")
+				importancia= sqlite3_column_int(stmt, 2); // @suppress("Invalid arguments")
+				duracion= sqlite3_column_int(stmt, 3); // @suppress("Invalid arguments")
+				strcpy(titulo, (char *) sqlite3_column_text(stmt,4 )); // @suppress("Invalid arguments")
+				strcpy(descripcion, (char *) sqlite3_column_text(stmt, 5)); // @suppress("Invalid arguments")
+				cout << "Fecha: "<< fecha<< " Duracion: "<<duracion<< " Importancia: "<<importancia<< " Titulo: "<<titulo<< " Descripcion: " <<descripcion<< endl;
+		}
+	} while (result == SQLITE_ROW);
+
+	cout<<endl;
+	cout<<endl;
+
+	// Cerrar base de datos
+	result = sqlite3_finalize(stmt); // @suppress("Invalid arguments")
+	if (result != SQLITE_OK) {
+		//cout<<"Error finalizando consulta (SELECT)\n");
+		//cout<<"%s\n", sqlite3_errmsg(db)); // @suppress("Invalid arguments")
+		return result;
+	}
+
+	return SQLITE_OK;
+}
